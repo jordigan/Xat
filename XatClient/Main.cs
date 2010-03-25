@@ -9,15 +9,20 @@ namespace XatClient
 	{
 		public static void Main(string[] args)
 		{
-			Client client = new Client("192.168.130.88", 6969);
+			Client client = new Client("192.168.130.75", 6969);
 			
 			if (client.ConnectToServer())
 			{
-				while (true)
+                bool desconectar = false;
+				while (true && desconectar == false)
 				{
                     try
                     {
-                        client.WriteLine(Console.ReadLine());
+                        string cadena = Console.ReadLine();
+                        if (cadena == "disconnect")
+                            desconectar = true;
+                        client.WriteLine("jordigc.1988@gmail.com");
+                        client.WriteLine(cadena);
                     }
                     catch (Exception ex)
                     {
@@ -60,7 +65,7 @@ namespace XatClient
 			try
 			{
 				//tcpClient = new TcpClient(server_endpoint);
-				tcpClient = new TcpClient("192.168.130.85", 9898);
+				tcpClient = new TcpClient("192.168.130.81", 9898);
 				
 				netStream = tcpClient.GetStream();
 				readerStream = new StreamReader(netStream);
